@@ -1,37 +1,61 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.*; 
+import java.util.List;
+import java.util.ArrayList;
+
 public class Hangclass {
-	//I need some words to seed into the program
 	
-	//static String s2 = "Their";
-	//static String s3 = "Museum";
-	//static String s4 = "Rough";
-	//static String s5 = "House";
+	
+	
 	static Game g = new Game();
 	
+	 public static void main(String[] args) throws IOException {
 	
-	public static void main(String[] args)
+		BufferedReader bR = new BufferedReader(new FileReader("word.txt"));
+		ArrayList<String> word = new ArrayList<String>();
+		String line = bR.readLine();
+		while(line != null)
+		{
+			word.add(line);
+			line = bR.readLine();
+		}
+		
+		BufferedReader hT = new BufferedReader(new FileReader("hint.txt"));
+		ArrayList<String> hint = new ArrayList<String>();
+		String clue = hT.readLine();
+		while(clue !=null)
+		{
+			word.add(clue);
+			clue = hT.readLine();
+		}
+	for(String str: word)
 	{
-		g.setHint("Meow");
-		g.setWord("Cat");
-		 
-		int c = 0;
+		
+	
 	@SuppressWarnings("resource")
 	Scanner sc = new Scanner(System.in);
+	@SuppressWarnings("resource")
+	Scanner bt = new Scanner(System.in);
 	
-	//Random r = new Random(4);
-	// ^^ this can be used to add randomness to game.
-	//if(r.nextInt()==0);
-	//^^ can be used to randomly generate a word without use of arrays.
 	
-	//This example will be using the s1 string marked as "cat"
-		
-	//Game ends when the number of guesses is at the word length
-	while(c<g.getWord().length())
+
+
+
+System.out.println("To select a game, input a value from 0 to 3.  You can guess until the word is unmasked");
+	int userInput = bt.nextInt();
+	
+	g.setWord(word.get(userInput));
+	g.setHint(hint.get(userInput));
+	
+	while(g.isSolved()==false)
 	{
 		
-		for(int i=0; i <g.getWord().length(); i++)
+				
 		
-		{
 			System.out.println(" Guess a letter ");
 			System.out.println("Hint " + g.getHint());
 			System.out.println("Mask " + g.generateMask());
@@ -39,28 +63,17 @@ public class Hangclass {
 			String userGuess = sc.nextLine();
 			g.setGuess(userGuess);
 			
-			if(c<g.getWord().length())
+			if(g.isSolved()==true)
 			{
-				if(g.getWord().contains(userGuess))
 				
-				{
-					System.out.println("Correct.  You have " + (g.getWord().length()-c) + " guesses left.");
-				}
-				else
-				{
-					c+=1;
-					System.out.println("Incorrect.  You have " + (g.getWord().length()-c) + " guesses left. ");
-				}
+			}
+			
+			
+			
+		}		
+				
 		
-			}
-			else
-			{
-				System.out.println("Game Over");
-			}
-				
-				
-		}
-	}
+	
 	
 		
 		
@@ -71,5 +84,8 @@ public class Hangclass {
 	}
 
 }
+
+}
+
 
 

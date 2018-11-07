@@ -1,5 +1,7 @@
-import java.util.*;
-public class Game {
+
+public class Game 
+{
+
 private String hint;
 private String word;
 private String guess="";
@@ -48,6 +50,9 @@ public String generateMask()
 	
 	return mask;
 }
+
+
+	
 
 public void getGuesses()
 {
