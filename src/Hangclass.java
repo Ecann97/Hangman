@@ -1,10 +1,7 @@
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*; 
-import java.util.List;
 import java.util.ArrayList;
 
 public class Hangclass {
@@ -15,6 +12,7 @@ public class Hangclass {
 	
 	 public static void main(String[] args) throws IOException {
 	
+		@SuppressWarnings("resource")
 		BufferedReader bR = new BufferedReader(new FileReader("word.txt"));
 		ArrayList<String> word = new ArrayList<String>();
 		String line = bR.readLine();
@@ -23,16 +21,20 @@ public class Hangclass {
 			word.add(line);
 			line = bR.readLine();
 		}
+		bR.close();
 		
+		@SuppressWarnings("resource")
 		BufferedReader hT = new BufferedReader(new FileReader("hint.txt"));
 		ArrayList<String> hint = new ArrayList<String>();
 		String clue = hT.readLine();
 		while(clue !=null)
 		{
-			word.add(clue);
+			hint.add(clue);
 			clue = hT.readLine();
 		}
-	for(String str: word)
+		hT.close();
+	
+		for(@SuppressWarnings("unused") String str: word)
 	{
 		
 	
